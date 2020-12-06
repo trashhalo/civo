@@ -12,12 +12,12 @@ variable "port" {
 }
 
 variable "secrets" {
-  type = map(any)
+  type    = map(any)
   default = {}
 }
 
 variable "env" {
-  type = map(any)
+  type    = map(any)
   default = {}
 }
 
@@ -34,5 +34,5 @@ variable "host" {
 }
 
 variable "image_pull_secrets" {
-    type = string
+  type = string
 }
