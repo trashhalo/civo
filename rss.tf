@@ -9,11 +9,11 @@ module "rss" {
   host               = "rss.0qz.fun"
   image_pull_secrets = kubernetes_secret.docker.metadata.0.name
   image              = "ghcr.io/trashhalo/rss:latest"
-  replicas           = 5
+  replicas           = 2
 
   env = {
     "RAILS_ENV"         = "production"
-    "RAILS_MAX_THREADS" = "1"
+    "RAILS_MAX_THREADS" = "3"
   }
 
   secrets = {
