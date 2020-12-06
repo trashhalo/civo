@@ -6,6 +6,11 @@ terraform {
       source  = "civo/civo"
       version = "0.9.22"
     }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "1.3.2"
+    }
   }
 }
 
@@ -40,4 +45,16 @@ resource "kubernetes_secret" "docker" {
   }
 
   type = "kubernetes.io/dockerconfigjson"
+}
+
+provider "helm" {
+  kubernetes {
+    host     = civo_kubernetes_cluster.my_cluster.api_endpoint
+    username = yamldecode(civo_kubernetes_cluster.my_cluster.kubeconfig).users[0].user.username
+    password = yamldecode(civo_kubernetes_cluster.my_cluster.kubeconfig).users[0].user.password
+
+    cluster_ca_certificate = base64decode(
+      yamldecode(civo_kubernetes_cluster.my_cluster.kubeconfig).clusters[0].cluster.certificate-authority-data
+    )
+  }
 }
