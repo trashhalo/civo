@@ -9,7 +9,7 @@ resource "kubernetes_secret" "fediverse" {
 
   data = {
     "AWS_ACCESS_KEY_ID" = var.fediverse_aws_access_key_id
-    "AWS_ACCESS_KEY_ID" = var.fediverse_aws_secret_access_key
+    "AWS_SECRET_ACCESS_KEY" = var.fediverse_aws_secret_access_key
   }
 }
 
@@ -35,7 +35,7 @@ resource "kubernetes_cron_job" "fediverse" {
 
             container {
               name  = "mastadon-explorer"
-              image = "ghcr.io/trashhalo/mastadon-explorer:latest"
+              image = "ghcr.io/trashhalo/mastodon-explorer"
 
               env {
                 name  = "AWS_DEFAULT_REGION"
