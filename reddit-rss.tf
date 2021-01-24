@@ -7,7 +7,6 @@ module "reddit_rss" {
   port               = 8080
   name               = "reddit-rss"
   app                = "RedditRss"
-  host               = "reddit.0qz.fun"
   image_pull_secrets = kubernetes_secret.docker.metadata.0.name
   image              = "ghcr.io/trashhalo/reddit-rss:latest"
   replicas           = 2

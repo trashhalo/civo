@@ -29,10 +29,6 @@ variable "replicas" {
   type = number
 }
 
-variable "host" {
-  type = string
-}
-
 variable "image_pull_secrets" {
   type = string
 }

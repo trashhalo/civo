@@ -4,7 +4,7 @@ terraform {
   required_providers {
     civo = {
       source  = "civo/civo"
-      version = "0.9.22"
+      version = "0.9.23"
     }
 
     helm = {
@@ -26,7 +26,6 @@ resource "civo_kubernetes_cluster" "my_cluster" {
 }
 
 provider "kubernetes" {
-  load_config_file = false
   host             = civo_kubernetes_cluster.my_cluster.api_endpoint
   username         = yamldecode(civo_kubernetes_cluster.my_cluster.kubeconfig).users[0].user.username
   password         = yamldecode(civo_kubernetes_cluster.my_cluster.kubeconfig).users[0].user.password

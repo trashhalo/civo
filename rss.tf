@@ -6,7 +6,6 @@ module "rss" {
   port               = 3000
   name               = "rss"
   app                = "Rss"
-  host               = "rss.0qz.fun"
   image_pull_secrets = kubernetes_secret.docker.metadata.0.name
   image              = "ghcr.io/trashhalo/rss:latest"
   replicas           = 2

@@ -8,7 +8,7 @@ resource "kubernetes_secret" "fediverse" {
   }
 
   data = {
-    "AWS_ACCESS_KEY_ID" = var.fediverse_aws_access_key_id
+    "AWS_ACCESS_KEY_ID"     = var.fediverse_aws_access_key_id
     "AWS_SECRET_ACCESS_KEY" = var.fediverse_aws_secret_access_key
   }
 }

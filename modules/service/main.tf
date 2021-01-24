@@ -7,13 +7,11 @@ resource "kubernetes_service" "service" {
     selector = {
       app = var.app
     }
-    session_affinity = "ClientIP"
+    session_affinity = "None"
     port {
       port        = var.port
       target_port = var.port
     }
-
-    type = "LoadBalancer"
   }
 }
 
@@ -98,33 +96,6 @@ resource "kubernetes_deployment" "deploy" {
                 }
               }
             }
-          }
-        }
-      }
-    }
-  }
-}
-
-resource "kubernetes_ingress" "ingress" {
-  metadata {
-    name = var.name
-
-    annotations = {
-      "kubernetes.io/ingress.class" = "traefik"
-    }
-  }
-
-  spec {
-    rule {
-      host = var.host
-
-      http {
-        path {
-          path = "/"
-
-          backend {
-            service_name = kubernetes_service.service.metadata.0.name
-            service_port = var.port
           }
         }
       }
